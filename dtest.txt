@@ -1,0 +1,19 @@
+python -m venv env
+
+env\Scripts\activate
+
+pip install django djangorestframework drf-yasg
+
+django-admin startproject dtest .
+
+python manage.py startapp api
+
+pip freeze > requirements.txt
+
+pip install -r requirements.txt
+
+python manage.py makemigrations
+python manage.py migrate
+python manage.py runserver
+
+git ls-files --error-unmatch api\apps.py
