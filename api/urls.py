@@ -1,7 +1,7 @@
 from django.urls import path
-from .views import PorukaView
+from .views import MessageView, MessageDetailView
 
 urlpatterns = [
-    path('poruke/', PorukaView.as_view(), name='poruke'),
+    path('', MessageView.as_view(), name='messages'),
+    path('<int:pk>/', MessageDetailView.as_view(), name='message-detail'),
 ]
-

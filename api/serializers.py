@@ -1,7 +1,7 @@
 from rest_framework import serializers
-from .models import Poruka
+from .models import Message
 
-class PorukaSerializer(serializers.ModelSerializer):
+class MessageSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Poruka
-        fields = ['tekst']
+        model = Message
+        fields = ['text']

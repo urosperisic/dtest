@@ -19,3 +19,8 @@ python manage.py runserver
 git ls-files --error-unmatch api\apps.py
 
 python manage.py createsuperuser
+
+----------
+
+python manage.py startapp books
+
