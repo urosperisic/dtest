@@ -5,19 +5,29 @@ from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 from django.http import HttpResponse
 from rest_framework.routers import DefaultRouter
+
 from books.views import BookViewSet
 from shop.views import ProductViewSet, CategoryViewSet
+from simpleauth.views import SignupView, LogoutView, RoleBasedView
 
-# Centralni router
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
+
 router = DefaultRouter()
 router.register(r'books', BookViewSet)
 router.register(r'products', ProductViewSet)
 router.register(r'categories', CategoryViewSet)
 
-# Swagger koristi isti router
 schema_urlpatterns = [
     path('api/messages/', include('api.urls')),
     path('api/', include(router.urls)),
+    path('api/signup/', SignupView.as_view(), name='signup'),
+    path('api/login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/logout/', LogoutView.as_view(), name='logout'),
+    path('api/role-based/', RoleBasedView.as_view(), name='role_based'),
 ]
 
 schema_view = get_schema_view(
@@ -48,7 +58,7 @@ def home(request):
                     padding: 0;
                 }
                 main {
-                    height: 100vh;
+                    min-height: 100vh;
                     background-color: #0C4B33;
                     display: flex;
                     flex-direction: column;
@@ -80,16 +90,32 @@ def home(request):
                     <p>/api/categories --- categories page</p>
                     <br />
                     <p>/api/products --- products page</p>
+                    <br />
+                    <p>/api/signup --- signup page</p>
+                    <br />
+                    <p>/api/login --- login page</p>
+                    <br />
+                    <p>/api/logout --- logout page</p>
+                    <br />
+                    <p>/api/token/refresh --- refresh token page</p>
+                    <br />
+                    <p>/api/role-based --- role-based page</p>
                 </div>
             </main>
         </body>
-    </html>
-    """)
+        </html>
+        """
+    )
 
 urlpatterns = [
     path('', home),
     path('admin/', admin.site.urls),
     path('api/messages/', include('api.urls')),
     path('api/', include(router.urls)),
+    path('api/signup/', SignupView.as_view(), name='signup'),
+    path('api/login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/logout/', LogoutView.as_view(), name='logout'),
+    path('api/role-based/', RoleBasedView.as_view(), name='role_based'),
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
 ]
