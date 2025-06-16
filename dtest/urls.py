@@ -34,21 +34,56 @@ schema_view = get_schema_view(
 def home(request):
     return HttpResponse(
         """
-        <div style='height: 100vh; background-color: #417690'>
-        <h1 style='color: #f5dd5d; text-align: center; padding-top: 100px;'>Welcome!</h1>
-        <br />
-        <h2 style='color: #f5dd5d; text-align: center;'>/admin --- admin page</h2>
-        <br />
-        <h2 style='color: #f5dd5d; text-align: center;'>/swagger --- docs page</h2>
-        <br />
-        <p style='color: #f5dd5d; text-align: center;'>/api/messages --- messages page</p>
-        <br />
-        <p style='color: #f5dd5d; text-align: center;'>/api/books --- books page</p>
-        <br />
-        <p style='color: #f5dd5d; text-align: center;'>/api/categories --- categories page</p>
-        <br />
-        <p style='color: #f5dd5d; text-align: center;'>/api/products --- products page</p>
-        <div>
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta http-equiv="X-UA-Compatible" content="ie=edge">
+            <title>Admin Page</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 0;
+                    padding: 0;
+                }
+                main {
+                    height: 100vh;
+                    background-color: #0C4B33;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                }
+                h1, h2, p {
+                    color: #fff;
+                    text-align: center;
+                }
+                h1 {
+                    padding-top: 100px;
+                }
+            </style>
+        </head>
+        <body>
+            <main>
+                <div>
+                    <h1>Welcome!</h1>
+                    <br />
+                    <h2>/admin --- admin page</h2>
+                    <br />
+                    <h2>/swagger --- docs page</h2>
+                    <br />
+                    <p>/api/messages --- messages page</p>
+                    <br />
+                    <p>/api/books --- books page</p>
+                    <br />
+                    <p>/api/categories --- categories page</p>
+                    <br />
+                    <p>/api/products --- products page</p>
+                </div>
+            </main>
+        </body>
+    </html>
     """)
 
 urlpatterns = [
